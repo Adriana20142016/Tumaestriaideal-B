@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Descubre tu Posgrado Ideal | Tecmilenio</title>
+
+<!-- Google Font Montserrat -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --primario: #6ED34A;
+  --oscuro: #02514D;
+  --gris: #F5F7F9;
+  --texto: #333333;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body{
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+  background: var(--gris);
+  color: var(--texto);
+  line-height: 1.6;
+}
+
+.header{
+  background: white;
+  padding: 25px 20px;
+  text-align: center;
+  box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+  position: relative;
+}
+
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primario) 0%, var(--oscuro) 100%);
+}
+
+.header svg{
+  height: 55px;
+  max-width: 280px;
+}
+
+.container{
+  max-width: 700px;
+  margin: 50px auto;
+  background: white;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(2, 81, 77, 0.12);
+  min-height: 400px;
+}
+
+/* PANTALLA INTRO */
+.intro-screen {
+  text-align: center;
+}
+
+.intro-screen h1 {
+  color: var(--oscuro);
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0 0 20px 0;
+  line-height: 1.3;
+}
+
+.intro-screen .subtitle {
+  color: #666;
+  font-size: 18px;
+  margin-bottom: 40px;
+}
+
+.intro-screen .benefits {
+  text-align: left;
+  margin: 30px 0;
+  display: inline-block;
+}
+
+.intro-screen .benefits li {
+  margin: 15px 0;
+  font-size: 16px;
+  color: #555;
+}
+
+.intro-screen .benefits li::marker {
+  color: var(--primario);
+}
+
+/* PROGRESS BAR */
+.progress-container {
+  margin-bottom: 30px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: #E0E4E8;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primario) 0%, var(--oscuro) 100%);
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #666;
+  font-weight: 600;
+}
+
+/* QUIZ SCREEN */
+.quiz-screen {
+  display: none;
+}
+
+.question-title {
+  color: var(--oscuro);
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.options-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.option-btn {
+  background: white;
+  border: 3px solid #E0E4E8;
+  padding: 20px 25px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--texto);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.option-btn:hover {
+  border-color: var(--primario);
+  background: #F0FDF4;
+  transform: translateX(5px);
+}
+
+.option-btn.selected {
+  border-color: var(--primario);
+  background: linear-gradient(135deg, #E8F8E5 0%, #F0FDF4 100%);
+}
+
+/* FORM SCREEN */
+.form-screen {
+  display: none;
+}
+
+h1{
+  color: var(--oscuro);
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0 0 15px 0;
+  line-height: 1.3;
+}
+
+.subtitle {
+  color: #666;
+  font-size: 16px;
+  margin-bottom: 30px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  color: var(--oscuro);
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+input{
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 2px solid #E0E4E8;
+  font-size: 15px;
+  font-family: 'Montserrat', sans-serif;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+input:focus{
+  outline: none;
+  border-color: var(--primario);
+  box-shadow: 0 0 0 3px rgba(110, 211, 74, 0.1);
+}
+
+input::placeholder {
+  color: #999;
+}
+
+button.primary-btn{
+  background: linear-gradient(135deg, var(--primario) 0%, #5BC236 100%);
+  color: white;
+  border: none;
+  padding: 16px;
+  width: 100%;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(110, 211, 74, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+button.primary-btn:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(110, 211, 74, 0.4);
+}
+
+button.primary-btn:active {
+  transform: translateY(0);
+}
+
+.privacy-text{
+  font-size: 13px;
+  color: #666;
+  margin-top: 25px;
+  line-height: 1.6;
+  padding: 15px;
+  background: #F8F9FA;
+  border-radius: 8px;
+  border-left: 3px solid var(--primario);
+}
+
+.privacy-text a {
+  color: var(--oscuro);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid var(--oscuro);
+  transition: color 0.3s ease;
+}
+
+.privacy-text a:hover {
+  color: var(--primario);
+  border-bottom-color: var(--primario);
+}
+
+.error{
+  color: #E74C3C;
+  font-size: 14px;
+  margin-top: 15px;
+  padding: 12px;
+  background: #FFEBEE;
+  border-radius: 8px;
+  border-left: 3px solid #E74C3C;
+  display: none;
+}
+
+.error.show {
+  display: block;
+}
+
+/* RESULT SCREEN */
+.result-screen {
+  display: none;
+}
+
+.result-box{
+  background: linear-gradient(135deg, #E8F8E5 0%, #F0FDF4 100%);
+  padding: 25px;
+  border-radius: 12px;
+  margin-top: 25px;
+  border: 2px solid var(--primario);
+}
+
+.result-box h3 {
+  color: var(--oscuro);
+  font-size: 20px;
+  margin: 0 0 15px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.result-box h4 {
+  color: var(--oscuro);
+  font-size: 16px;
+  margin: 20px 0 10px 0;
+}
+
+.result-box p {
+  color: #555;
+  margin: 10px 0;
+  font-size: 15px;
+}
+
+.icon-check {
+  width: 24px;
+  height: 24px;
+  background: var(--primario);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+}
+
+.hidden {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  .container {
+    margin: 30px 15px;
+    padding: 25px 20px;
+  }
+
+  .intro-screen h1 {
+    font-size: 26px;
+  }
+
+  .question-title {
+    font-size: 20px;
+  }
+
+  .option-btn {
+    padding: 16px 20px;
+    font-size: 15px;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3298.19 946" style="height: 55px; max-width: 280px;">
+    <defs><style>.cls-1{fill:#6ed34a;}.cls-2{fill:#02514d;}.cls-3{fill:#01504c;}</style></defs>
+    <path class="cls-1" d="M829.52,477.59c9.76-15.23,21-27.86,34.62-38.25,27.55-21,58.74-30.44,93.23-29.57,2.76.07,3.33,1.07,3.29,3.53-.12,7.67-.26,15.34.05,23,.16,3.87-1.15,4.75-4.81,4.61-24.54-1-47.26,5.1-67.41,19.2-32.11,22.45-48.75,53.58-49.12,92.74-.44,46.16-.19,92.33,0,138.49,0,4.78-1.44,5.82-5.83,5.59a197.24,197.24,0,0,0-20.49,0c-4.09.22-4.92-1.19-4.9-5q.21-54,0-108c-.08-19,.85-38-1.08-56.95a255.73,255.73,0,0,0-15.34-65.29c-1.73-.22-2,1.22-2.46,2.13-14.65,26.95-22.57,55.73-22.67,86.45q-.24,70.5.07,141c0,4.65-1.25,5.94-5.79,5.69-7-.38-14-.29-21,0-3.52.14-4.48-1-4.46-4.45.14-23.84.12-47.67.07-71.5-.06-26.16.32-52.33-.45-78.47-.84-28.23-9-54.63-22.73-79.32-.3-.55-.71-1.05-1.44-2.09-3.23,6.24-4.92,12.55-6.73,18.76a256.35,256.35,0,0,0-10.34,73.38c.22,46.16,0,92.33.16,138.49,0,4.16-1,5.43-5.22,5.22-7-.36-14-.32-21,0-3.88.17-5-.88-5-4.89q.25-46.26,0-92.5c-.1-19.32.83-38.66-.65-58-3.65-47.34-42.14-89.92-89-98.65a125.53,125.53,0,0,0-27.82-2c-3.22.13-4.36-.75-4.25-4.12.24-7.66.2-15.34,0-23-.08-3,.61-4,3.81-4,53.15-.6,95,20.73,125.35,64.39.64.92.91,2.22,2.5,2.57a276.77,276.77,0,0,1,15.81-43.32c1.59-3.36-.91-4.64-2.43-6.27-19.69-20.92-42.79-36.84-69.7-47.1a180.38,180.38,0,0,0-70.39-11.94c-3.8.11-5.19-.76-5-4.84.36-7.48.19-15,.05-22.49-.05-2.61.37-3.78,3.45-3.82,58.57-.77,109.65,18.21,153,57.76,7.66,7,7.54,7.09,13.17-1.32a234.79,234.79,0,0,1,16.31-22.1c2.23-2.61,2.6-4-.32-6.66q-60.69-56.1-142.5-67.33a226.39,226.39,0,0,0-38.86-2c-3.24.12-4.34-.75-4.23-4.12.25-7.66.2-15.33,0-23-.07-3,.63-4,3.84-4,76.75-.46,143.78,24.65,200.84,76.1,5.26,4.74,5.18,4.8,10.16.25q68.43-62.51,160.37-74.16a316.53,316.53,0,0,1,40.38-2.2c3.17,0,4,1,3.9,4-.18,7.49-.28,15,0,22.49.16,3.79-1,4.76-4.72,4.68A254.16,254.16,0,0,0,871,308c-36.29,11.94-68.21,31.23-96.23,57.12-2.39,2.21-1.86,3.53-.11,5.65a233.85,233.85,0,0,1,19.78,27.56c1.86,3.06,2.93,3.34,5.64.69a213.52,213.52,0,0,1,94.49-54.45,223.74,223.74,0,0,1,62.24-7.61c3.12,0,4,.88,3.88,3.93-.22,7.16-.33,14.34,0,21.49.22,4.42-.86,5.91-5.61,5.77A179.32,179.32,0,0,0,872,385.86c-21.45,10.21-40.06,24.28-56.41,41.44-2.34,2.45-3,4.5-1.41,7.81C820.59,448.47,825.23,462.5,829.52,477.59ZM751,472.23A221.92,221.92,0,0,1,774.64,429c1.09-1.54.65-2.7-.14-4.07A285.41,285.41,0,0,0,753,393.15c-1.67-2.15-2.42-1.83-3.94.11a280.47,280.47,0,0,0-21.27,31.36c-1,1.77-1.24,3.06.06,4.91A219.21,219.21,0,0,1,751,472.23Z"/>
+    <path class="cls-2" d="M1708.39,626.67C1722,590.08,1735.21,554.6,1748.2,519c1.59-4.35,3.43-6.2,8.37-6,12,.44,24,.24,36,.07,3,0,4.06.82,4.44,3.77q8.51,66.1,17.19,132.19c1.86,14.19,3.69,28.39,5.78,42.54.62,4.21-.07,5.74-4.83,5.54-10.31-.42-20.66-.23-31-.06-3,0-3.82-.78-4.18-3.82-4.54-38.68-9.28-77.34-14-116-.08-.63,0-1.34-1.45-1.62-2.79,7.61-5.64,15.31-8.45,23-11.57,31.67-23.22,63.32-34.58,95.06-1.34,3.74-3,4.81-6.73,4.55a92,92,0,0,0-13.49,0c-3.6.27-5.11-1-6.32-4.42q-20.74-57.68-41.79-115.22a10.33,10.33,0,0,0-2.39-4.07q-1.36,11.07-2.72,22.15c-3.92,32.22-7.89,64.44-11.67,96.67-.35,3-1.25,3.77-4.19,3.72-10.83-.19-21.66-.15-32.49,0-2.77,0-3.6-.42-3.18-3.57q10.5-77.93,20.7-155.89c.92-6.93,2-13.84,2.77-20.78.28-2.67,1.08-3.74,3.92-3.71,13,.13,26,.18,39,0,3.32-.06,3.63,2,4.44,4.19q18.33,49,36.7,98C1705.35,618.67,1706.64,622.05,1708.39,626.67Z"/>
+    <path class="cls-3" d="M2393.92,629.8c0-37,.07-74-.09-110.94,0-4.36.78-6.05,5.6-5.83,9.31.44,18.66.34,28,0,4.07-.14,5.34.88,5.31,5.14-.2,28.82-.1,57.65-.1,86.47,0,29.16-.08,58.31.08,87.47,0,3.85-.88,5.06-4.89,5-11.32-.29-22.66-.21-34,0-3.17.06-5-.78-6.73-3.62q-33.81-55.94-67.89-111.69c-.49-.81-1-1.59-2.29-3.58-.14,3-.29,4.65-.29,6.34,0,35.82-.1,71.64.09,107.46,0,4.26-1.15,5.25-5.24,5.12-9.82-.31-19.66-.2-29.49,0-2.87.05-4-.42-4-3.72q.16-88.22,0-176.43c0-3.2,1-3.86,4-3.82,11.83.17,23.66.23,35.48,0,3.37-.07,5,1.22,6.62,3.9q33,54.4,66.1,108.69c.93,1.51,1.93,3,2.9,4.48Z"/>
+    <path class="cls-2" d="M2567.91,594.67c.2-16.5,7.47-40.49,26.7-59.73s42.74-26.24,69.22-24.48c47.17,3.14,77.44,38.74,81.47,82.86,1.76,19.26-.21,37.95-8.25,55.6-14.14,31-38.66,48.11-72.48,50.81-30.16,2.41-56.25-7-75.83-30.86C2573.54,650.33,2567.73,628.45,2567.91,594.67Zm42,11a67.29,67.29,0,0,0,2.32,19.71c5.61,21.64,20.64,34.42,43.31,35.24,18.42.68,34.89-7.11,43.16-27.67,7.44-18.48,7.28-37.49-.1-56-7.22-18.1-22.2-27.17-43-27.08-18.8.08-33.53,10-40.79,27.47A68.57,68.57,0,0,0,2610,605.65Z"/>
+    <path class="cls-1" d="M1356.25,376.19v-4.84c0-33.82.09-67.65-.1-101.47,0-4.23,1.16-5.29,5.25-5.15,9,.32,18,.29,27,0,3.8-.11,5,.79,5,4.84-.18,34.32-.1,68.64-.1,103,0,21.33-.08,42.66.08,64,0,3.54-1,4.47-4.46,4.4-10.82-.22-21.66-.24-32.48,0-3.35.08-5-1.18-6.62-3.89q-31.9-52.71-64-105.27c-.84-1.38-1.76-2.7-3.49-5.32v6.06c0,34.48-.06,69,.09,103.46,0,3.89-.92,5.1-4.92,5-9.32-.31-18.66-.23-28,0-3.11.06-3.94-.93-3.94-4q.12-84.22,0-168.44c0-2.71.61-3.79,3.58-3.75,11.66.16,23.33.23,35,0,3.25-.07,4.3,1.72,5.6,3.87q31.24,51.36,62.5,102.69c1,1.7,2.1,3.37,3.15,5.05Z"/>
+    <path class="cls-1" d="M2648.85,264.83c11.41.52,25.25-.88,39,1,36.23,4.92,62.78,30.29,69.06,66.34,3.93,22.53,2.36,44.56-8.2,65.18-13,25.37-34.36,39.51-62.39,42.48-25.37,2.68-50.95.52-76.42,1-2.18.05-3.09-.67-2.85-2.84a23.16,23.16,0,0,0,0-2.5c0-55.16.07-110.32-.12-165.48,0-4.56,1.26-5.44,5.49-5.32C2623.79,265,2635.12,264.83,2648.85,264.83Zm-2.23,88v47.94a4.17,4.17,0,0,1,0,.5c-.45,2.93.54,4.09,3.75,4,8.48-.27,17,.21,25.46-.3,17.37-1.05,30.24-9.18,37.51-25.33,5.29-11.73,6-24.13,4.6-36.66-2.49-22.62-15.73-38-36-41.61-10.21-1.81-20.61-.43-30.9-.87-3.45-.14-4.56.84-4.52,4.41C2646.72,320.85,2646.62,336.83,2646.62,352.81Z"/>
+    <path class="cls-1" d="M2249.92,353c0-27.82.1-55.63-.1-83.45,0-4,1.17-4.87,5-4.83,22.49.23,45-.15,67.45.32,40.09.86,72.25,29.86,77.88,69.56,3.06,21.57,1.57,42.57-8.38,62.26-12.86,25.45-34.13,39.78-62.1,42.88-25.51,2.84-51.25.57-76.88,1.11-3.75.08-2.81-2.46-2.81-4.4q-.06-28.23,0-56.47Zm39.34-.63c0,16.16.06,32.32-.05,48.48,0,3,.38,4.5,4,4.37,8.65-.32,17.35.24,26-.35,16.53-1.13,29.21-8.76,36.31-24.09,7.31-15.78,7.67-32.25,2.81-48.72-5.59-18.92-18.64-29.59-38.22-31.22-8.77-.73-17.65-.14-26.47-.45-3.56-.13-4.43,1.06-4.4,4.5C2289.36,320.74,2289.26,336.57,2289.26,352.4Z"/>
+    <path class="cls-1" d="M1985.73,440.83q-21.56,0-43.22,0c-2.4,0-2.87-2-3.78-3.46-11.2-18.49-22.44-37-33.5-55.55-1.65-2.79-3.4-4-6.69-3.74a61.24,61.24,0,0,1-10.49,0c-3.47-.28-4.54.89-4.51,4.42.17,17.5-.12,35,.21,52.5.09,4.93-1.32,6.11-6.08,5.93-10-.39-20-.22-30-.06-2.84.05-3.65-.77-3.65-3.62q.12-84.51,0-169c0-2.4.32-3.53,3.18-3.51,25.33.17,50.67-.31,76,.37,25.63.68,47.66,18,53.86,41.06,7.09,26.33-4.67,52.72-29.31,64.9-4.08,2-3.84,3.32-1.65,6.66,12.85,19.62,25.47,39.4,38.13,59.14C1984.92,438,1986.15,438.83,1985.73,440.83ZM1883.59,322.58v20c0,1.72-.09,3.38,2.48,3.29,11.46-.41,23,1,34.39-.78,12.13-1.85,18.71-10.07,18.63-22.62s-6.68-20.71-18.8-22.54c-11.4-1.73-22.93-.37-34.39-.74-2.67-.08-2.29,1.83-2.3,3.44C1883.57,309.27,1883.59,315.93,1883.59,322.58Z"/>
+    <path class="cls-3" d="M1251.09,605.23c0-29.16.07-58.31-.09-87.46,0-3.68.81-4.72,4.63-4.7q57.46.23,114.94,0c3.59,0,4.93.66,4.79,4.59-.32,9-.31,18,0,27,.13,4-.8,5.34-5.1,5.3-24.32-.23-48.64,0-73-.21-4.22,0-5.3,1.15-5.14,5.26.33,8.65.33,17.33,0,26-.16,4.26.81,5.68,5.39,5.62,19.66-.28,39.32,0,59-.21,3.73,0,4.81.89,4.67,4.67-.31,8.65-.34,17.33,0,26,.16,4-1.25,4.59-4.78,4.56-19.66-.16-39.32,0-59-.17-4.09,0-5.44.94-5.29,5.19.33,9.49.31,19,0,28.48-.15,4.37.78,5.92,5.6,5.86,24.15-.28,48.31,0,72.46-.24,4.2,0,5.3,1.07,5.14,5.2-.35,8.82-.3,17.66,0,26.48.12,3.65-.73,4.72-4.58,4.7q-57.72-.24-115.44,0c-3.57,0-4.34-1-4.32-4.41C1251.15,663.53,1251.09,634.38,1251.09,605.23Z"/>
+    <path class="cls-3" d="M2109.92,605.21c0-29,.09-58-.1-87,0-4.2,1.15-5.17,5.25-5.15q57,.26,114,0c4.24,0,5.27,1.13,5.12,5.23-.32,9.15-.25,18.33,0,27.49.09,3.33-.93,4.15-4.17,4.13-24.67-.13-49.33,0-74-.15-3.68,0-5.18.6-5,4.76.36,9.16.34,18.34,0,27.5-.15,4,1.23,4.57,4.77,4.54,19.83-.17,39.67,0,59.5-.17,3.89,0,5.08.94,4.93,4.91-.32,8.49-.35,17,0,25.49.18,4.18-1.32,4.84-5,4.81-19.83-.17-39.67,0-59.5-.17-3.75,0-4.77.88-4.66,4.65.28,10.16.26,20.34,0,30.5-.09,3.62,1.08,4.35,4.49,4.33,24.67-.15,49.33,0,74-.17,3.62,0,4.85.7,4.71,4.58-.33,9.15-.3,18.33,0,27.49.11,3.66-1.11,4.28-4.47,4.27q-57.75-.18-115.5,0c-3.5,0-4.4-.87-4.38-4.37C2110,663.54,2109.92,634.38,2109.92,605.21Z"/>
+    <path class="cls-2" d="M1405.57,602.13c1.68-34.07,13.64-62.75,44.34-80.56,34.44-20,89.62-17.11,116.21,30.33,1.68,3,2.15,4.78-1.31,7.05-9.17,6-18.06,12.49-27,18.93-2.16,1.56-3.17,1.49-4.51-.92-1.94-3.47-4.28-6.73-6.56-10-18.52-26.59-60.73-21.11-73,8.1-8.75,20.84-8.47,41.86,1.32,62.34,12.87,26.93,52.77,31.68,70.76,6.88a128,128,0,0,0,7.46-11.19c1.41-2.45,2.47-2.39,4.56-.88q14,10.06,28.16,19.85c2,1.38,2,2.5,1,4.43C1551.7,683.66,1529,699,1497.34,700c-22.51.73-42.79-5.42-60-20.17-19.23-16.46-28.47-38-31.2-62.73-.29-2.65-.43-5.31-.52-8C1405.5,606.8,1405.57,604.47,1405.57,602.13Z"/>
+    <path class="cls-1" d="M1206.26,324.82c0,16.49.31,33-.07,49.47-.59,26.16-10,47.77-34,60.86-25.57,14-68.19,11.87-89.86-11.95-12.54-13.79-18-30.23-18.17-48.37-.36-35.31-.06-70.62-.18-105.94,0-3.23.79-4.21,4.1-4.14,10.32.22,20.66.29,31,0,3.93-.12,4.61,1.22,4.59,4.8-.13,33.81-.08,67.63-.07,101.44,0,7.23.81,14.3,4.41,20.75,6.36,11.38,17,14.59,28.88,13.88,20-1.19,29.59-12.31,29.64-33.22.08-34,.11-68-.09-101.94,0-4.58,1.13-5.89,5.72-5.72,9.82.37,19.66.29,29.48,0,3.68-.1,4.75.79,4.7,4.61C1206.14,287.84,1206.26,306.33,1206.26,324.82Z"/>
+    <path class="cls-1" d="M2564.63,440.84c-5.33,0-10.68-.22-16,.08-3.53.19-5.33-.84-6.49-4.35-3.12-9.47-6.77-18.76-10-28.19-.9-2.63-2.12-3.47-4.94-3.45q-31,.21-62,0c-2.87,0-4.08,1-5,3.51-3.31,9.4-7,18.67-10.15,28.12-1.17,3.48-2.94,4.46-6.47,4.38-10-.25-20-.33-30,0-4.74.17-5.14-1.05-3.51-5.16q22.85-57.67,45.42-115.45c6.74-17.16,13.59-34.28,20.15-51.51,1.22-3.2,2.77-4.16,6.11-4.08,10.32.24,20.66.18,31,0,2.83,0,4.36.64,5.48,3.52q32.8,84,65.9,167.91c1.38,3.52,1.46,5-3.05,4.73C2575.64,440.56,2570.13,440.84,2564.63,440.84Zm-68-128.72h-1.11q-10.68,29.25-21.4,58.6h44.17Z"/>
+    <path class="cls-1" d="M1691.25,353c0-27.83.07-55.66-.08-83.48,0-3.65.77-4.77,4.62-4.75q55,.22,110,0c3.85,0,4.71,1.08,4.59,4.72q-.4,12.74,0,25.49c.13,3.85-.86,5-4.89,5-23.16-.21-46.32,0-69.48-.21-4.18,0-5.32,1-5.15,5.19.35,8.48.3,17,0,25.48-.12,3.67.76,4.74,4.59,4.7,19-.22,38,0,57-.2,3.85,0,4.74,1.06,4.61,4.73-.28,8.15-.25,16.33,0,24.49.11,3.48-.91,4.51-4.43,4.48-19-.16-38,0-57-.16-3.6,0-4.9.68-4.77,4.59.31,9.66.26,19.33,0,29-.09,3.4,1.05,4.06,4.2,4,23.49-.12,47,.05,70.48-.17,4,0,4.94,1.16,4.82,5-.28,8.66-.18,17.33,0,26,0,2.85-.44,4.09-3.76,4.08q-55.72-.18-111.47,0c-3.72,0-3.89-1.62-3.88-4.48Q1691.32,394.71,1691.25,353Z"/>
+    <path class="cls-1" d="M2073.51,443.49c-28.47-.1-50.31-7.12-69.18-22.79-3.23-2.69-4-4.62-1-8.24,5.61-6.8,10.79-14,15.82-21.21,2.08-3,3.35-2.84,5.93-.59,16.27,14.19,35.2,19.57,56.52,16.33,11-1.67,17-7.24,17.67-15.9.62-7.94-2.38-12.72-10.55-16-8.83-3.59-18.31-4.76-27.5-7-8.22-2-16.57-3.54-24.31-7.21-18.75-8.88-28.22-23.88-28.23-44.44s8.48-36.66,27.24-46.41c14.7-7.64,30.57-8.79,46.69-7.8A86.21,86.21,0,0,1,2131.67,281c2.62,2.07,3,3.56,1,6.41-5.43,7.77-10.63,15.72-15.68,23.74-1.66,2.64-2.63,2.74-5.1.8-14.89-11.72-31.73-16.55-50.51-13.06-9.35,1.74-14.15,7-14.46,14.64-.36,8.8,3.36,14.3,13,16.89,11.23,3,22.71,5.07,34.06,7.64a65.87,65.87,0,0,1,23.31,9.77c29.11,20.19,27.16,65.16-3.63,84.47C2100.11,440.82,2085,443.35,2073.51,443.49Z"/>
+    <path class="cls-1" d="M1495.8,264.83c14.11,0,27.59.09,41.06-.06,3.28,0,3.23,2.37,3.86,4.23q17.22,50.72,34.34,101.45c2.64,7.82,5.34,15.62,8.35,24.42,12.47-36.45,24.55-71.77,36.64-107.09,2.26-6.59,4.57-13.16,6.78-19.77.54-1.62.74-3.21,3.06-3.2,12.94.05,25.89,0,39.33,0-7.17,19.75-14.15,38.93-21.11,58.12q-20.55,56.64-41,113.3c-1.27,3.54-2.91,4.78-6.73,4.68q-17.47-.42-35,0c-3.75.08-5.38-1-6.7-4.62q-27.6-75.82-55.56-151.51Z"/>
+    <path class="cls-3" d="M1160.09,623.83c0,22.82-.11,45.64.11,68.46,0,4.05-1.18,4.89-5,4.8-10.49-.25-21-.39-31.47,0-4.73.2-5.31-1.48-5.3-5.59.14-45,0-89.94.22-134.91,0-5.12-1.29-6.36-6.3-6.24-14.81.35-29.65,0-44.47.2-3.54,0-4.52-1-4.44-4.49.23-9.49.21-19,0-28.48-.07-3.36.7-4.56,4.35-4.55q71.2.18,142.41,0c3.54,0,4.51,1,4.43,4.48-.22,9.49-.29,19,0,28.48.13,4-1.38,4.6-4.89,4.56-15.16-.18-30.32,0-45.47-.17-3.57,0-4.37,1-4.34,4.45C1160.17,577.86,1160.09,600.85,1160.09,623.83Z"/>
+    <path class="cls-3" d="M1955.93,604.94c0-29,.08-58-.1-87,0-4,1.1-5,5-4.9,10.49.27,21,.29,31.48,0,4-.11,4.9,1.07,4.89,5-.14,45.64,0,91.29-.19,136.94,0,4.12.92,5.2,5.11,5.16,22.33-.24,44.65,0,67-.21,3.87,0,4.7,1.07,4.6,4.71-.26,9.33-.23,18.66,0,28,.08,3.37-.67,4.5-4.29,4.49q-54.73-.21-109.46,0c-3.37,0-4.07-1-4.05-4.18C1956,663.58,1955.93,634.26,1955.93,604.94Z"/>
+    <path class="cls-2" d="M1862.57,605c0-29,.07-58-.09-86.93,0-3.87.91-5.11,4.94-5,10.65.3,21.31.21,32,0,3.23-.05,4.64.49,4.63,4.25q-.18,87.93,0,175.85c0,3.12-.86,3.93-3.91,3.88-11-.18-22-.25-33,0-3.81.1-4.67-1-4.65-4.69C1862.64,663.27,1862.57,634.13,1862.57,605Z"/>
+    <path class="cls-2" d="M2484.25,605.31c0-29.15.06-58.29-.08-87.43,0-3.58.66-4.92,4.59-4.82,11,.29,22,.21,33,0,3.08-.05,3.95.89,3.95,3.93q-.12,88.18,0,176.35c0,2.74-.64,3.75-3.58,3.7-11.15-.17-22.32-.28-33.46,0-4.12.12-4.46-1.5-4.44-4.89C2484.3,663.26,2484.25,634.28,2484.25,605.31Z"/>
+    <path class="cls-1" d="M1434.25,353.06c0-27.8.09-55.61-.09-83.41,0-4,1.06-5,5-4.91,10.31.27,20.64.2,31,0,3.05-.05,3.93.81,3.92,3.91q-.13,84.15,0,168.31c0,3.08-.85,4-3.93,3.93-10.49-.18-21-.22-31.46,0-3.54.08-4.45-1-4.44-4.46C1434.31,408.66,1434.25,380.86,1434.25,353.06Z"/>
+    <path class="cls-1" d="M2169.09,352.87c0-27.82.08-55.64-.09-83.46,0-3.68.79-4.79,4.6-4.68,10.32.3,20.66.18,31,0,2.82,0,4.08.39,4.07,3.73q-.16,84.21,0,168.42c0,3-.81,4-3.93,4-10.16-.19-20.33-.28-30.48,0-4.09.13-5.28-.86-5.25-5.11C2169.19,408.18,2169.09,380.52,2169.09,352.87Z"/>
+  </svg>
+</div>
+
+<div class="container">
+
+  <!-- PANTALLA INICIAL -->
+  <div class="intro-screen" id="introScreen">
+    <h1>Descubre tu posgrado ideal en Tecmilenio</h1>
+    <p class="subtitle">Responde 4 preguntas rápidas y te recomendaremos el programa perfecto para ti.</p>
+    
+    <ul class="benefits">
+      <li>Encuentra el posgrado que potenciará tu carrera.</li>
+      <li>⏱️ Solo 2 minutos de tu tiempo</li>
+      <li>🎯 Recomendación personalizada basada en tu perfil</li>
+      <li>💼 Orientación para tu crecimiento profesional</li>
+    </ul>
+
+    <button class="primary-btn" onclick="iniciarQuiz()">Comenzar Quiz</button>
+  </div>
+
+  <!-- PANTALLA DEL QUIZ -->
+  <div class="quiz-screen" id="quizScreen">
+    <div class="progress-container">
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <div class="progress-text" id="progressText">Pregunta 1 de 4</div>
+    </div>
+
+    <h2 class="question-title" id="questionTitle"></h2>
+    <div class="options-container" id="optionsContainer"></div>
+  </div>
+
+  <!-- PANTALLA DE CAPTURA -->
+  <div class="form-screen" id="formScreen">
+    <h1>🎯 Tu resultado está listo</h1>
+    <p class="subtitle">Déjanos tus datos para verlo y recibir información personalizada sobre tu programa ideal.</p>
+
+    <div class="form-group">
+      <label for="nombre">Nombre completo *</label>
+      <input type="text" id="nombre" placeholder="Ej. María González Hernández">
+    </div>
+
+    <div class="form-group">
+      <label for="telefono">Teléfono *</label>
+      <input type="tel" id="telefono" placeholder="10 dígitos sin espacios">
+    </div>
+
+    <div class="form-group">
+      <label for="correo">Correo electrónico *</label>
+      <input type="email" id="correo" placeholder="correo@ejemplo.com">
+    </div>
+
+    <div class="form-group">
+      <label for="empresa">Empresa donde laboras</label>
+      <input type="text" id="empresa" placeholder="Nombre de tu empresa actual">
+    </div>
+
+    <p class="error" id="error"></p>
+
+    <button class="primary-btn" onclick="enviarLead()">Ver mi resultado</button>
+
+    <p class="privacy-text">
+      🔒 Tu información será utilizada únicamente para enviarte detalles sobre Tecmilenio y asesorarte en caso de que decidas inscribirte.
+      <br><br>
+      🔗 <a href="https://tecmilenio.mx/es/politicas-de-privacidad" target="_blank">Políticas de privacidad</a>
+    </p>
+  </div>
+
+  <!-- PANTALLA DE RESULTADO -->
+  <div class="result-screen" id="resultScreen">
+    <h1>Resultado de tu perfil</h1>
+    <div id="resultado"></div>
+  </div>
+
+</div>
+
+<script>
+// ========== CONFIGURACIÓN ==========
+const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbx5dwYKcHxR-sbZR3idAWsUfJIwHLK_PoiB8stgWNSwnIOkwylmOMsDvepCA06DOTkx/exec";
+const WHATSAPP = "5215521500215";
+const PROMOTORA = "Berenice Bautista";
+
+// ========== AVATARES ==========
+const avatares = {
+  personas: "Arquitecto del Talento",
+  negocio: "Estratega Comercial",
+  finanzas: "Analista de Alto Impacto",
+  operacion: "Maestro en Optimización",
+  tecnologia: "Experto en Tecnología",
+  educacion: "Líder en Aprendizaje"
+};
+
+// ========== CERTIFICACIONES POR ÁREA ==========
+const certificaciones = {
+  personas: ["People Analytics", "Gestión del Talento", "Cultura Organizacional"],
+  negocio: ["Marketing Digital", "Inteligencia de Mercados", "Estrategia Comercial"],
+  finanzas: ["Evaluación Financiera", "Gestión de Riesgos", "Planeación Financiera"],
+  operacion: ["Lean", "Six Sigma", "Optimización de Procesos"],
+  tecnologia: ["Transformación Digital", "Ciberseguridad", "Cloud & IA"],
+  educacion: ["Diseño Instruccional", "Innovación Educativa", "Tecnologías del Aprendizaje"]
+};
+
+// ========== PREGUNTAS DEL QUIZ ==========
+const questions = [
+  {
+    text: "¿Qué tipo de problemas te gusta resolver?",
+    options: [
+      {text: "Desarrollo de personas", area: "personas"},
+      {text: "Crecimiento del negocio", area: "negocio"},
+      {text: "Uso eficiente del dinero", area: "finanzas"},
+      {text: "Mejorar procesos", area: "operacion"},
+      {text: "Aplicar tecnología", area: "tecnologia"},
+      {text: "Mejorar la forma en que otros aprenden", area: "educacion"}
+    ]
+  },
+  {
+    text: "¿Dónde generas más impacto?",
+    options: [
+      {text: "Equipos", area: "personas"},
+      {text: "Clientes", area: "negocio"},
+      {text: "Rentabilidad", area: "finanzas"},
+      {text: "Productividad", area: "operacion"},
+      {text: "Transformación digital", area: "tecnologia"},
+      {text: "Formación y desarrollo académico", area: "educacion"}
+    ]
+  },
+  {
+    text: "¿Qué disfrutas más?",
+    options: [
+      {text: "Liderar", area: "personas"},
+      {text: "Estrategias comerciales", area: "negocio"},
+      {text: "Inversiones", area: "finanzas"},
+      {text: "Optimizar", area: "operacion"},
+      {text: "Innovar con tecnología", area: "tecnologia"},
+      {text: "Enseñar o capacitar", area: "educacion"}
+    ]
+  },
+  {
+    text: "Nivel que buscas",
+    options: [
+      {text: "Aplicación rápida", nivel: "aplicacion"},
+      {text: "Dirección", nivel: "direccion"},
+      {text: "Alta especialización", nivel: "especializacion"}
+    ]
+  }
+];
+
+// ========== PROGRAMAS POR ÁREA Y NIVEL ==========
+const programas = {
+  personas: {
+    aplicacion: {
+      principal: "Especialidad en Recursos Humanos",
+      alternativas: ["MBA en Recursos Humanos", "Maestría en Dirección del Capital Humano"]
+    },
+    direccion: {
+      principal: "MBA en Recursos Humanos",
+      alternativas: ["Especialidad en Recursos Humanos", "Maestría en Dirección del Capital Humano"]
+    },
+    especializacion: {
+      principal: "Maestría en Dirección del Capital Humano",
+      alternativas: ["Especialidad en Recursos Humanos", "MBA en Recursos Humanos"]
+    }
+  },
+  negocio: {
+    aplicacion: {
+      principal: "Especialidad en Innovación",
+      alternativas: ["MBA en Mercadotecnia", "Maestría en Mercadotecnia Digital"]
+    },
+    direccion: {
+      principal: "MBA en Mercadotecnia",
+      alternativas: ["Especialidad en Innovación", "Maestría en Mercadotecnia Digital"]
+    },
+    especializacion: {
+      principal: "Maestría en Mercadotecnia Digital",
+      alternativas: ["Especialidad en Innovación", "MBA en Mercadotecnia"]
+    }
+  },
+  finanzas: {
+    aplicacion: {
+      principal: "Especialidad en Finanzas",
+      alternativas: ["MBA en Finanzas", "Maestría en Finanzas"]
+    },
+    direccion: {
+      principal: "MBA en Finanzas",
+      alternativas: ["Especialidad en Finanzas", "Maestría en Finanzas"]
+    },
+    especializacion: {
+      principal: "Maestría en Finanzas",
+      alternativas: ["Especialidad en Finanzas", "MBA en Finanzas"]
+    }
+  },
+  operacion: {
+    aplicacion: null,
+    direccion: {
+      principal: "MBA en Logística",
+      alternativas: ["Maestría en Calidad y Productividad"]
+    },
+    especializacion: {
+      principal: "Maestría en Calidad y Productividad",
+      alternativas: ["MBA en Logística"]
+    }
+  },
+  tecnologia: {
+    aplicacion: {
+      principal: "Maestría en Gestión de Tecnologías de la Información",
+      alternativas: ["Máster en Inteligencia Artificial", "Máster en Automatización y Robótica"]
+    },
+    direccion: {
+      principal: "Máster en Inteligencia Artificial",
+      alternativas: ["Maestría en Gestión de Tecnologías de la Información", "Máster en Automatización y Robótica"]
+    },
+    especializacion: {
+      principal: "Máster en Automatización y Robótica",
+      alternativas: ["Maestría en Gestión de Tecnologías de la Información", "Máster en Inteligencia Artificial"]
+    }
+  },
+  educacion: {
+    aplicacion: null,
+    direccion: null,
+    especializacion: {
+      principal: "Maestría en Educación",
+      alternativas: []
+    }
+  }
+};
+
+// ========== VARIABLES GLOBALES ==========
+let currentQuestion = 0;
+let puntosArea = {
+  personas: 0,
+  negocio: 0,
+  finanzas: 0,
+  operacion: 0,
+  tecnologia: 0,
+  educacion: 0
+};
+let nivelSeleccionado = "";
+let nombreUsuario = "";
+let programaPrincipal = "";
+let alternativas = [];
+let areaGanadora = "";
+
+// ========== FUNCIONES DEL QUIZ ==========
+function iniciarQuiz() {
+  document.getElementById('introScreen').classList.add('hidden');
+  document.getElementById('quizScreen').style.display = 'block';
+  mostrarPregunta();
+}
+
+function mostrarPregunta() {
+  const question = questions[currentQuestion];
+  document.getElementById('questionTitle').innerText = question.text;
+  
+  const optionsContainer = document.getElementById('optionsContainer');
+  optionsContainer.innerHTML = '';
+  
+  question.options.forEach((option, index) => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.innerText = option.text;
+    btn.onclick = () => seleccionarOpcion(option, index);
+    optionsContainer.appendChild(btn);
+  });
+  
+  actualizarProgreso();
+}
+
+function seleccionarOpcion(option, index) {
+  // Guardar respuesta
+  if(option.area) {
+    puntosArea[option.area]++;
+  }
+  if(option.nivel) {
+    nivelSeleccionado = option.nivel;
+  }
+  
+  // Marcar visualmente
+  const buttons = document.querySelectorAll('.option-btn');
+  buttons.forEach(btn => btn.classList.remove('selected'));
+  buttons[index].classList.add('selected');
+  
+  // Avanzar después de 300ms
+  setTimeout(() => {
+    currentQuestion++;
+    
+    if(currentQuestion < questions.length) {
+      mostrarPregunta();
+    } else {
+      calcularResultado();
+      mostrarFormulario();
+    }
+  }, 300);
+}
+
+function actualizarProgreso() {
+  const progreso = ((currentQuestion + 1) / questions.length) * 100;
+  document.getElementById('progressFill').style.width = progreso + '%';
+  document.getElementById('progressText').innerText = `Pregunta ${currentQuestion + 1} de ${questions.length}`;
+}
+
+function calcularResultado() {
+  // Detectar área con mayor puntaje
+  let maxPuntos = 0;
+  areaGanadora = "";
+  
+  for(let area in puntosArea) {
+    if(puntosArea[area] > maxPuntos) {
+      maxPuntos = puntosArea[area];
+      areaGanadora = area;
+    }
+  }
+  
+  // Si no hay nivel seleccionado, usar "direccion" por defecto
+  if(!nivelSeleccionado) {
+    nivelSeleccionado = "direccion";
+  }
+  
+  // Obtener programa principal
+  const resultado = programas[areaGanadora][nivelSeleccionado];
+  
+  if(resultado && resultado.principal) {
+    programaPrincipal = resultado.principal;
+    alternativas = resultado.alternativas;
+  } else {
+    // Si no existe combinación, buscar alternativa en la misma área
+    const nivelesDisponibles = ["especializacion", "direccion", "aplicacion"];
+    for(let nivel of nivelesDisponibles) {
+      if(programas[areaGanadora][nivel] && programas[areaGanadora][nivel].principal) {
+        programaPrincipal = programas[areaGanadora][nivel].principal;
+        alternativas = programas[areaGanadora][nivel].alternativas;
+        break;
+      }
+    }
+  }
+}
+
+function mostrarFormulario() {
+  document.getElementById('quizScreen').style.display = 'none';
+  document.getElementById('formScreen').style.display = 'block';
+}
+
+// ========== VALIDACIÓN Y ENVÍO ==========
+function validarDatos(nombre, telefono, correo){
+  if(nombre.trim().split(" ").length < 2){
+    return "Por favor escribe tu nombre y apellido completo.";
+  }
+  if(!/^\d{10}$/.test(telefono)){
+    return "El teléfono debe tener exactamente 10 dígitos.";
+  }
+  if(!correo.includes("@") || !correo.includes(".")){
+    return "Por favor ingresa un correo electrónico válido.";
+  }
+  return null;
+}
+
+function enviarLead(){
+  const nombre = document.getElementById("nombre").value;
+  const telefono = document.getElementById("telefono").value;
+  const correo = document.getElementById("correo").value;
+  const empresa = document.getElementById("empresa").value;
+  const errorDiv = document.getElementById("error");
+
+  const error = validarDatos(nombre, telefono, correo);
+  if(error){
+    errorDiv.innerText = error;
+    errorDiv.classList.add("show");
+    return;
+  }
+
+  nombreUsuario = nombre.split(" ")[0];
+  errorDiv.classList.remove("show");
+
+  fetch(WEBAPP_URL, {
+    method: "POST",
+    body: JSON.stringify({
+      promotora: PROMOTORA,
+      nombre,
+      telefono,
+      correo,
+      empresa,
+      programa: programaPrincipal,
+      alternativas: alternativas.join(", "),
+      area: areaGanadora,
+      nivel: nivelSeleccionado,
+      puntos: JSON.stringify(puntosArea)
+    })
+  }).then(() => {
+    mostrarResultado();
+  }).catch(() => {
+    errorDiv.innerText = "Hubo un error al enviar tus datos. Por favor intenta de nuevo.";
+    errorDiv.classList.add("show");
+  });
+}
+
+function mostrarResultado(){
+  document.getElementById('formScreen').style.display = 'none';
+  document.getElementById('resultScreen').style.display = 'block';
+
+  const avatar = avatares[areaGanadora];
+  const certs = certificaciones[areaGanadora];
+  
+  let resultadoHTML = `
+    <div class="result-box">
+      <h3><span class="icon-check">✓</span> ¡Hola ${nombreUsuario}! Tu perfil es: ${avatar}</h3>
+      <p><strong>Programa recomendado:</strong></p>
+      <p><strong>${programaPrincipal}</strong></p>
+  `;
+
+  // Solo mostrar alternativas si existen
+  if(alternativas && alternativas.length > 0) {
+    resultadoHTML += `
+      <h4>También podrías considerar:</h4>
+      <p>${alternativas.join(", ")}</p>
+    `;
+  }
+
+  // Bloque de Certificaciones
+  resultadoHTML += `
+      <h4>📋 Certificaciones relacionadas con tu perfil:</h4>
+      <p>${certs.join(", ")}</p>
+  `;
+
+  // Bloque Impacto Profesional
+  resultadoHTML += `
+      <h4>💼 Impacto profesional:</h4>
+      <p>Mayor proyección profesional, acceso a mejores posiciones y fortalecimiento de tu perfil directivo.</p>
+  `;
+
+  // Bloque Beneficio + Urgencia
+  resultadoHTML += `
+      <h4>🎁 Beneficio activo para tu perfil</h4>
+      <p>Recibe orientación personalizada. Te ayudo a validar tu perfil y te conecto con el asesor especialista para gestionar tu plan de beca y costos.</p>
+  `;
+
+  resultadoHTML += `
+      <a href="https://wa.me/${WHATSAPP}?text=Hola,%20soy%20${encodeURIComponent(nombreUsuario)}%20y%20realicé%20el%20quiz.%20Quiero%20información%20sobre%20${encodeURIComponent(programaPrincipal)}" target="_blank" style="text-decoration: none;">
+        <button class="primary-btn">Hablar con embajadora</button>
+      </a>
+    </div>
+  `;
+
+  document.getElementById("resultado").innerHTML = resultadoHTML;
+}
+
+// Permitir envío con Enter
+document.addEventListener('DOMContentLoaded', function() {
+  const inputs = ['nombre', 'telefono', 'correo', 'empresa'];
+  inputs.forEach(id => {
+    const input = document.getElementById(id);
+    if(input) {
+      input.addEventListener('keypress', function(e) {
+        if(e.key === 'Enter') enviarLead();
+      });
+    }
+  });
+});
+</script>
+
+</body>
+</html>
